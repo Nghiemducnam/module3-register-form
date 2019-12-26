@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-function comparePassword(c: AbstractControl){
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+function comparePassword(c: AbstractControl) {
   const v = c.value;
   return (v.password === v.confirmPassword) ? null : {
-    passwordnotmatch : true
+    passwordnotmatch: true
   };
 }
 
@@ -13,21 +14,22 @@ function comparePassword(c: AbstractControl){
   styleUrls: ['./register-final.component.scss']
 })
 export class RegisterFinalComponent implements OnInit {
-  registerForm : FormGroup;
+  registerForm: FormGroup;
 
-  constructor(private fb : FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+  }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       pwGroup: this.fb.group({
         password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword:['', [Validators.required, Validators.minLength(6)]]
-      }, {validator : comparePassword}),
-        country: ['', Validators.required],
-        age: ['', [Validators.required, Validators.min(18)]],
-        gender:  ['', Validators.required],
-        phone: ['', [Validators.required, Validators.pattern(/^\+84\d{9,10}$/)]]
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+      }, {validator: comparePassword}),
+      country: ['', Validators.required],
+      age: ['', [Validators.required, Validators.min(18)]],
+      gender: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^\+84\d{9,10}$/)]]
     });
 
     //update from state
@@ -35,8 +37,9 @@ export class RegisterFinalComponent implements OnInit {
       email: 'infor@example.com'
     });
   }
-  onSubmit(){
-    console.log( this.registerForm);
+
+  onSubmit() {
+    console.log(this.registerForm);
   }
 
 }

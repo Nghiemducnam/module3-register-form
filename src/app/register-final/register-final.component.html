@@ -16,6 +16,9 @@
         Password
         <input type="password" class="form-control" formControlName="password">
       </label>
+          <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('pwGroup').get('password').invalid && registerForm.get('pwGroup').get('password').touched">
+            Invalid password!
+          </div>
         </div>
         <div class="form-group row">
             <label class="col">
@@ -44,7 +47,7 @@
     <div class="form-group row">
         <label class="col">
       Age
-      <input type="number" class="form-control" formControlName="age">
+      <input type="number" class="form-control" formControlName="age" min=8 required>
     </label>
     </div>
     <div class="alert alert-danger" role="alert" *ngIf="registerForm.get('age').invalid && registerForm.get('age').touched">
